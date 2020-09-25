@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.1259
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasswordChecker", "PasswordChecker\PasswordChecker.csproj", "{74074380-4BF2-481C-8035-923464A070A5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicAndConditionals", "PasswordChecker\LogicAndConditionals.csproj", "{74074380-4BF2-481C-8035-923464A070A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
