@@ -1,32 +1,26 @@
 ﻿using System.Collections.Generic;
-using System.Collections;
 
-namespace PreorderTraversal
+namespace BinaryTreeTraversal
 {
-    class RecursivePreorder
+    // Visit left subtree, visit the root, visit the right subtree
+    class InorderTraversal
     {
-        public IList<int> PreorderTraversal(TreeNode root)
+        public IList<int> RecursiveInorder(TreeNode root)
         {
             IList<int> values = new List<int>();
-            TreeNode previous = root;
             Helper(root, values);
-            //Helper(root, values);
             return values;
         }
-
+       
         static void Helper(TreeNode root, IList<int> values)
         {
             if (root != null)
             {
-                values.Add(root.val);
                 if (root.left != null)
-                {
                     Helper(root.left, values);
-                }
+                values.Add(root.val);
                 if (root.right != null)
-                {
                     Helper(root.right, values);
-                }    
             }
         }
     }

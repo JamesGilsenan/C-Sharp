@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace PreorderTraversal
+
+namespace BinaryTreeTraversal
 {
     class Program
     {
@@ -15,10 +13,11 @@ namespace PreorderTraversal
             TreeNode node3 = new TreeNode(3, null, null);
             TreeNode node2 = new TreeNode(2, node4, node5);
             TreeNode node1 = new TreeNode(1, node2, node3);
-            RecursivePreorder recursive = new RecursivePreorder();
+            PreorderTraversal preorder = new PreorderTraversal();
+            InorderTraversal inorder = new InorderTraversal();
             
 
-            IList<int> values = recursive.PreorderTraversal(node1);
+            IList<int> values = inorder.RecursiveInorder(node1);
 
             foreach (int value in values)
             {
