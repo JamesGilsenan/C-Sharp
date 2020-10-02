@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System;
 
 namespace BinaryTreeTraversal
 {
@@ -23,16 +24,27 @@ namespace BinaryTreeTraversal
                     Helper(root.right, values);
             }
         }
-        /*
+        
         public IList<int> IterativeInorder(TreeNode root)
         {
             IList<int> values = new List<int>();
             Stack<TreeNode> stack = new Stack<TreeNode>();
+            TreeNode curr = root;
 
-
+            while (curr != null || stack.Count != 0)
+            {
+                while (curr != null)
+                {
+                    stack.Push(curr);
+                    curr = curr.left;
+                }
+                curr = stack.Pop();
+                values.Add(curr.val);
+                curr = curr.right;
+            }
 
             return values;
         }
-        */
+        
     }
 }
