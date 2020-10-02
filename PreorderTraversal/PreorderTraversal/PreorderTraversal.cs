@@ -28,5 +28,28 @@ namespace BinaryTreeTraversal
                 }    
             }
         }
+
+        public IList<int> IterativePreorder(TreeNode root)
+        {
+            IList<int> values = new List<int>();
+            Stack<TreeNode> stack = new Stack<TreeNode>();
+            TreeNode curr = root;
+
+            while (curr != null || stack.Count != 0)
+            {
+                while (curr != null)
+                {
+                    stack.Push(curr);
+                    values.Add(curr.val);
+                    curr = curr.left;
+                }
+                curr = stack.Pop();
+                if (!values.Contains(curr.val))
+                    values.Add(curr.val);
+                curr = curr.right;
+            }
+
+            return values;
+        }
     }
 }
