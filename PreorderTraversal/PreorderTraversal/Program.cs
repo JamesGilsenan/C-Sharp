@@ -17,13 +17,21 @@ namespace BinaryTreeTraversal
             InorderTraversal inorder = new InorderTraversal();
             PostorderTraversal postorder = new PostorderTraversal();
             
-            IList<int> values = postorder.RecursivePostorder(node1);
+            IList<int> recursiveValues = postorder.RecursivePostorder(node1);
+            IList<int> iterativeValues = postorder.IterativePostorder(node1);
 
-            foreach (int value in values)
+            Console.Write("Recursive values: ");
+            foreach (int value in recursiveValues)
             {
                 Console.Write(value + ", ");
             }
-            
+
+            Console.Write("\nIterative values: ");
+            foreach (int value in iterativeValues)
+            {
+                Console.Write(value + ", ");
+            }
+
             Console.Read();
         }
     }
