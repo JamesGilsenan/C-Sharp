@@ -43,7 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConstructBinaryTree.cs" />
+    <Compile Include="GivenInorderAndPostorder.cs" />
+    <Compile Include="GivenPreorderAndInorder.cs" />
     <Compile Include="IsSymmetric.cs" />
     <Compile Include="MaximumDepth.cs" />
     <Compile Include="PathSum.cs" />

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BinaryTrees
 {
-    class ConstructBinaryTree
+    class GivenInorderAndPostorder
     {
         //Given inorder and postorder traversal of a tree, construct the binary tree.
         //Inorder traversal - Visit left subtree, visit root, visit right subtree
