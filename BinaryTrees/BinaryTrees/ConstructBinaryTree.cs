@@ -12,69 +12,47 @@ namespace BinaryTrees
         //Inorder traversal - Visit left subtree, visit root, visit right subtree
         //Postorder Traversal - Visit left subtree, visit right subtree, visit root
 
-        private int postIndex;
-        private int inorderRoot;
-        private int nodes;
-        
-
         public TreeNode BuildTree(int[] inorder, int[] postorder)
         {
             //to find root, last element in postorder array = root
             //left subtree = everything left of root in inorder array
             //right sub tree = everything right of root in postorder array
 
-            nodes = postorder.Length;
-            inorderRoot = GetRoot(inorder, postorder[nodes - 1]);
+            //if there are 0 nodes, there is no tree to build. If both arrays don't have the same amount of values,  Return null
+            if (inorder.Length == 0 || postorder.Length == 0 || inorder.Length != postorder.Length)
+                return null;
 
-            //if there are 0 nodes, there is no tree to build. Return null
-            if (nodes == 0)
-                return null;
-            else if (inorder.Length != postorder.Length)
-                return null;
-            //else, there are nodes i.e. tree to build. Set index = root, last element in postorder
-            postIndex = postorder.Length - 1;
+            //Use Dictionary (Hashmap) to store inorder as key, value pairs.
+            var dictionary = new Dictionary<int, int>();
+            for (int i = 0; i < inorder.Length; i++)
+                dictionary[inorder[i]] = i;
+
+            int pStart = postorder.Length - 1;
 
             //call recursive method to build each node and return root node
-
-
-            return BuildNode(inorder, postorder, 0, nodes - 1);
+            return BuildNode(inorder, postorder, ref pStart, 0, inorder.Length - 1, dictionary);
         }
 
-        public TreeNode BuildNode(int[] inorder, int[] postorder, int inStart, int inEnd)
+        public TreeNode BuildNode(int[] inorder, int[] postorder, ref int pIdx, int inStart, int inEnd, Dictionary<int, int> dictionary)
         {
             //base case
             if (inStart > inEnd)
                 return null;
+            //node as no children, return node
+            //else if (inStart == inEnd)
+            //    return new TreeNode(postorder[inStart]);
 
-            //find index of root in inorder array
-            /*
-            int rootInorder = -1;
-            for (int i = inEnd; i >= inStart; i--)
-            {
-                if (inorder[i] == postIndex)
-                {
-                    rootInorder = i;
-                    break;
-                }
-            }
-            */
+            int current = postorder[pIdx];
+            TreeNode node = new TreeNode(current);
 
-            TreeNode node = new TreeNode(postorder[postIndex - 1]);
+            //Look up values using postorder values as key
+            int inCurrentIdx = dictionary[current];
 
-            node.right = BuildNode(inorder, postorder, inorderRoot + 1, inEnd);
-            node.left = BuildNode(inorder, postorder, inStart, inorderRoot - 1);
+            pIdx--;
+            node.right = BuildNode(inorder, postorder, ref pIdx, inCurrentIdx + 1, inEnd, dictionary);
+            node.left = BuildNode(inorder, postorder, ref pIdx, inStart, inCurrentIdx - 1, dictionary);
 
-            //change this to node to return
             return node;
-        }
-
-        public int GetRoot(int[] array, int value)
-        {
-            int i = 0;
-            for (i = 0; i < nodes; i++)
-                if (array[i] == value)
-                    break;
-            return i;
         }
 
     }
