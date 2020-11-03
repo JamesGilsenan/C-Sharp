@@ -30,19 +30,26 @@ namespace BinaryTrees
             TreeNode node2 = new TreeNode(4, node4, null);
             TreeNode node1 = new TreeNode(5, node2, node3);
             */
-            //Construct Tree given inorder and postorder Test
+            /*Construct Tree given inorder and postorder Test
             int[] inorder = new int[] { 9, 3, 15, 20, 7 };
             int[] postorder = new int[] { 9, 15, 7, 20, 3 };
+            */
+            //Construct Tree given Preorder and Inorder Test
+            int[] preorder = new int[] { 3, 9, 20, 15, 7 };
+            int[] inorder = new int[] { 9, 3, 15, 20, 7 };
 
             MaximumDepth maxDepth = new MaximumDepth();
             IsSymmetric symmetric = new IsSymmetric();
             PathSum pathSum = new PathSum();
-            ConstructBinaryTree buildTree = new ConstructBinaryTree();
+            GivenInorderAndPostorder buildTree1 = new GivenInorderAndPostorder();
+            GivenPreorderAndInorder buildTree2 = new GivenPreorderAndInorder();
+
 
             //Console.WriteLine("Max depth of tree: " + maxDepth.MaxDepth(node1));
             //Console.WriteLine("Binary Tree is symmetric: " + symmetric.CheckSymmetry(node1));
             //Console.WriteLine("Binary Tree has root to leaf path with sum: " + pathSum.HasPathSum(node1, 22));
-            Console.WriteLine("Constructing Binary Tree...\nRoot node: " + buildTree.BuildTree(inorder, postorder).val);
+            //Console.WriteLine("Constructing Binary Tree...\nRoot node: " + buildTree1.BuildTree(inorder, postorder).val);
+            Console.WriteLine("Constructing Binary Tree...\nRoot node: " + buildTree2.BuildTree(preorder, inorder).val);
 
             Console.Read();
         }
