@@ -47,7 +47,9 @@
     <Compile Include="GivenPreorderAndInorder.cs" />
     <Compile Include="IsSymmetric.cs" />
     <Compile Include="MaximumDepth.cs" />
+    <Compile Include="Node.cs" />
     <Compile Include="PathSum.cs" />
+    <Compile Include="PopulatingNextRightPointer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TreeNode.cs" />
