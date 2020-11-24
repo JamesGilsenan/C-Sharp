@@ -43,10 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddTwoNumbersQ.cs" />
+    <Compile Include="ListNode.cs" />
     <Compile Include="MajorityElementQ.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShiftCharQ.cs" />
+    <Compile Include="TrimBST.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
