@@ -25,12 +25,14 @@ namespace LeetCodeMockQuestions
             MajorityElementQ majorityElement = new MajorityElementQ();
             AddTwoNumbersQ addTwoNumbers = new AddTwoNumbersQ();
 
+            /*
             Console.WriteLine("String A will equal String B: " + shiftChar.ShiftCharQuestion(a, b));
             var list = majorityElement.MajorityElement(nums);
             Console.Write("[");
             foreach (int num in list)
                 Console.Write(num + ", "); ;
             Console.Write("]");
+            */
             addTwoNumbers.AddTwoNumbers(l1node1, l2node1);
 
 

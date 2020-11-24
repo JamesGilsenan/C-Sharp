@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LeetCodeMockQuestions
 {
@@ -14,33 +10,56 @@ namespace LeetCodeMockQuestions
         //Follow up:
         //What if you cannot modify the input lists? In other words, reversing the lists is not allowed.
 
-        ListNode temp = new ListNode(0);
-
         public ListNode AddTwoNumbers(ListNode l1, ListNode l2)
         {
-            ListNode l1Prev = l1;
-            ListNode l2Prev = l2;
+            //DisplayList(l1);
+            //DisplayList(l2);
+            l1 = ReverseIteratively(l1);
+            l2 = ReverseIteratively(l2);
+            //DisplayList(l1);
+            //DisplayList(l2);
 
-            reverseRecusively(l1);
-            reverseRecusively(l2);
+            int carry = 0;
+            ListNode dummyHead = new ListNode();
+            ListNode prev = dummyHead;
 
-            DisplayList(l1);
-            DisplayList(l2);
+            //include condition for carry == 1 incase last addition result is > 9. Need to create new node to carry the one
+            while (l1 != null || l2 != null || carry == 1)
+            {
+                // ? is ternary or conditional operator. Short version of if else conditions. E.G. condition ? statement 1 : statement 2 
+                int sum = ((l1 == null ? 0 : l1.val) + (l2 == null ? 0 : l2.val) + carry);
+                //int will always round down
+                carry = sum / 10;
+                prev.next = new ListNode(sum % 10);
+                prev = prev.next;
 
-            return l1;
+                if (l1 != null)
+                    l1 = l1.next;
+                if (l2 != null)
+                    l2 = l2.next;
+            }
+            //DisplayList(dummyHead.next);
+            dummyHead.next = ReverseIteratively(dummyHead.next);
+            DisplayList(dummyHead.next);
+
+            return dummyHead.next;
         }
 
-        public ListNode reverseRecusively(ListNode node)
+        public ListNode ReverseIteratively(ListNode node)
         {
-            
-            if (node.next == null)
-                return node;
-            reverseRecusively(node);
-            temp = node.next;
-            temp.next = node;
-            node.next = null;
+            ListNode curr = node;
+            ListNode prev = null;
+            ListNode temp = null;
 
-            return node;
+            while (curr.next != null)
+            {
+                temp = curr.next;
+                curr.next = prev;
+                prev = curr;
+                curr = temp;
+            }
+            curr.next = prev;
+            return curr;
         }
 
         public void DisplayList(ListNode node)
@@ -48,10 +67,12 @@ namespace LeetCodeMockQuestions
             while (node != null)
             {
                 if (node.next != null)
-                    Console.WriteLine(node.val + " -> ");
+                    Console.Write(node.val + " -> ");
                 else
-                    Console.WriteLine(node.val);
+                    Console.Write(node.val);
+                node = node.next;
             }
+            Console.Write("\n");
         }
     }
 }
