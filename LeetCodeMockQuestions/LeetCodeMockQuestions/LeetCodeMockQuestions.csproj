@@ -49,7 +49,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShiftCharQ.cs" />
-    <Compile Include="TrimBST.cs" />
+    <Compile Include="TreeNode.cs" />
+    <Compile Include="TrimBST_Q.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
