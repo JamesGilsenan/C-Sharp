@@ -19,8 +19,13 @@ namespace HackerRankQuestions
             /*string path = "UDDDUDUU";
             int steps = 8;
             Console.WriteLine("Valleys walked through: " + CountingValleys(steps, path));*/
-            int[] clouds = new int[] { 0, 0, 0, 0, 1, 0};
-            Console.WriteLine("Jumps to last cloud: " + JumpingOnClouds(clouds));
+
+            /*int[] clouds = new int[] { 0, 0, 0, 0, 1, 0};
+            Console.WriteLine("Jumps to last cloud: " + JumpingOnClouds(clouds));*/
+
+            string s = "aba";
+            int n = 10;
+            Console.WriteLine("Answer: " + RepeatedString(s, n));
 
             Console.Read();
         }
@@ -143,5 +148,37 @@ namespace HackerRankQuestions
             return jumps;
         }
 
+        static long RepeatedString(string s, long n)
+        {
+            /*Lilah has a string, , of lowercase English letters that she repeated infinitely many times.
+            Given an integer, , find and print the number of letter a's in the first  letters of Lilah's infinite string.
+            For example, if the string  and , the substring we consider is , the first  characters of her infinite string. There are  occurrences of a in the substring.*/
+
+            char toFind = 'a';
+            long size = s.Length;
+            long multiple = n / size;
+            long remainder = n - (size * multiple);
+            int answer = 0;
+
+            for (int i = 0; i < size; i++)
+            {
+                if (s[i] == toFind)
+                {
+                    answer++;
+                }
+            }
+
+            multiple *= answer;
+
+            for (int i = 0; i < remainder; i++)
+            {
+                if (s[i] == toFind)
+                {
+                    multiple++;
+                }
+            }
+
+            return multiple;
+        }
     }
 }
