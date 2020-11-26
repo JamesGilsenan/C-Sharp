@@ -16,9 +16,11 @@ namespace HackerRankQuestions
             int pairs = SockMerchant(9, sockArray);
             Console.WriteLine("Paris of Socks: " + pairs);
             */
-            string path = "UDDDUDUU";
+            /*string path = "UDDDUDUU";
             int steps = 8;
-            Console.WriteLine("Valleys walked through: " + CountingValleys(steps, path));
+            Console.WriteLine("Valleys walked through: " + CountingValleys(steps, path));*/
+            int[] clouds = new int[] { 0, 0, 0, 0, 1, 0};
+            Console.WriteLine("Jumps to last cloud: " + JumpingOnClouds(clouds));
 
             Console.Read();
         }
@@ -111,5 +113,35 @@ namespace HackerRankQuestions
 
             return valleys;
         }
+
+
+        static int JumpingOnClouds(int[] c)
+        {
+            /*Emma is playing a new mobile game that starts with consecutively numbered clouds. Some of the clouds are thunderheads and others are cumulus. 
+            She can jump on any cumulus cloud having a number that is equal to the number of the current cloud plus 1 or 2. She must avoid the thunderheads. 
+             * Determine the minimum number of jumps it will take Emma to jump from her starting postion to the last cloud. It is always possible to win the game.
+            For each game, Emma will get an array of clouds numbered 0 if they are safe or 1 if they must be avoided. */
+
+            int jumps = 0;
+            int currentCloud = 0;
+
+            while(currentCloud < c.Length - 1)
+            {
+                if (currentCloud + 2 >= c.Length - 1)
+                    return jumps += 1;
+                if (c[currentCloud + 2] == 0)
+                {
+                    currentCloud += 2;
+                    jumps++;
+                }
+                else if (c[currentCloud + 1] == 0)
+                {
+                    currentCloud++;
+                    jumps++;
+                }
+            }
+            return jumps;
+        }
+
     }
 }
