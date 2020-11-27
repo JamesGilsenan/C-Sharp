@@ -23,15 +23,26 @@ namespace HackerRankQuestions
             /*int[] clouds = new int[] { 0, 0, 0, 0, 1, 0};
             Console.WriteLine("Jumps to last cloud: " + JumpingOnClouds(clouds));*/
 
-            string s = "aba";
+            /*string s = "aba";
             int n = 10;
-            Console.WriteLine("Answer: " + RepeatedString(s, n));
+            Console.WriteLine("Answer: " + RepeatedString(s, n));*/
+
+            //x = rows, y = columns. arr[5,4] = 4. arr[3,2] = 2
+            int[,] arr = new int[6, 6] {
+            { 1, 1, 1, 0, 0, 0 },
+            { 0, 1, 0, 0, 0, 0 },
+            { 1, 1, 1, 0, 0, 0 },
+            { 0, 0, 2, 4, 4, 0 },
+            { 0, 0, 0, 2, 0, 0 },
+            { 0, 0, 1, 2, 4, 0 }
+            };
+            Console.WriteLine(HourGlassSum(arr));
 
             Console.Read();
         }
 
         
-        static void staircase(int n)
+        static void Staircase(int n)
         {
             //WIP
             //Given n, the number of steps in a staircase, build the staircase. Use "#" as char to build the staircase.
@@ -180,5 +191,37 @@ namespace HackerRankQuestions
 
             return multiple;
         }
+
+        static int HourGlassSum(int[,] arr)
+        {
+            /*There are  hourglasses in . An hourglass sum is the sum of an hourglass' values. 
+             * Calculate the hourglass sum for every hourglass in , then print the maximum hourglass sum. The array will always be 6 x 6. */
+
+
+            //Store hour glass sums in array to be printed at the end
+            //as i add each int hourglass sum to int[] sums array, use an int to track the largest sum so far. If the current sum is larger than the maxSum, set maxSum = current sum
+            int maxSum = int.MinValue;
+            var sums = new int[16];
+            int limit = Convert.ToInt32(Math.Sqrt(arr.Length)) - 2;
+            Console.Write(arr.Length);
+
+            for(int i=0; i< limit; i++)
+            {
+                for (int j = 0; j < limit; j++)
+                {
+                    sums[i] = arr[i, j] + arr[i, j + 1] + arr[i, j+2] + arr[i+1, j+1] +arr[i+2, j] + arr[i+2, j+1] + arr[i+2, j+2];
+                    Console.WriteLine("Hour Glass Sum: " + sums[i] + "\nMax Sum: " + maxSum);
+                    if (sums[i] > maxSum)
+                    {
+                        maxSum = sums[i];
+                    }
+                }
+                
+            }
+
+            return maxSum;
+        }
+
+
     }
 }
