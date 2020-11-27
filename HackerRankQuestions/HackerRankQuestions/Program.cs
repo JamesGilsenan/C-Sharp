@@ -38,13 +38,16 @@ namespace HackerRankQuestions
             };
             Console.WriteLine(HourGlassSum(arr));*/
 
-            var a = new int[] { 1, 2, 3, 4, 5 };
+            /*var a = new int[] { 1, 2, 3, 4, 5 };
             int d = 4;
             var shiftedArray = RotLeft(a, d);
             foreach (int num in shiftedArray)
             {
                 Console.Write(num + " ");
-            }
+            }*/
+
+            var q = new int[] { 1, 2, 5, 3, 7, 8, 6, 4 };
+            MinimumBribes(q);
 
             Console.Read();
         }
@@ -252,6 +255,51 @@ namespace HackerRankQuestions
                 }
             }
             return b;
+        }
+
+        static void MinimumBribes(int[] q)
+        {
+            /*It's New Year's Day and everyone's in line for the Wonderland rollercoaster ride! There are a number of people queued up, and each person wears a sticker indicating their initial position in the queue. Initial positions increment by  from  at the front of the line to  at the back.
+            Any person in the queue can bribe the person directly in front of them to swap positions. If two people swap positions, they still wear the same sticker denoting their original places in line. One person can bribe at most two others. For example, if  and  bribes , the queue will look like this: .
+            Fascinated by this chaotic queue, you decide you must know the minimum number of bribes that took place to get the queue into its current state!
+            print an integer representing the minimum number of bribes necessary, or Too chaotic if the line configuration is not possible.*/
+
+            int n = q.Length;
+            int bribes = 0;
+
+            for (int i=0; i < n; i++)
+            {
+                int index = i+1;
+                //Console.WriteLine("i: " + index + " | q[i]: " + q[i]);
+                //if a person q[i] has bribed 2 people, print "too chaotic" and exit method 
+                if(q[i] - index > 2)
+                {
+                    //Console.WriteLine(bribes);
+                    Console.WriteLine("Too chaotic");
+                    return;
+                }
+                //use Math.max to ensure q[i]-2 wont't return a negative number. 
+                //check if a person has moved ahead of another, if so increment int bribes
+                for(int j=Math.Max(0, q[i]-2); j<i; j++)
+                {
+                    if (q[j] > q[i])
+                    {
+                        bribes++;
+                    }
+                }
+            }
+            Console.WriteLine("Bribes: " + bribes);
+        }
+
+        static int MinimumSwaps(int[] arr)
+        {
+            /*You are given an unordered array consisting of consecutive integers  [1, 2, 3, ..., n] without any duplicates. You are allowed to swap any two elements. 
+             * You need to find the minimum number of swaps required to sort the array in ascending order. */
+
+            int swaps = 0;
+
+
+            return swaps;
         }
 
 
