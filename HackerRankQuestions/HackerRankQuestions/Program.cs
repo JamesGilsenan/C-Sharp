@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,15 +24,40 @@ namespace HackerRankQuestions
             /*int[] clouds = new int[] { 0, 0, 0, 0, 1, 0};
             Console.WriteLine("Jumps to last cloud: " + JumpingOnClouds(clouds));*/
 
-            string s = "aba";
+            /*string s = "aba";
             int n = 10;
-            Console.WriteLine("Answer: " + RepeatedString(s, n));
+            Console.WriteLine("Answer: " + RepeatedString(s, n));*/
+
+            //x = rows, y = columns. arr[5,4] = 4. arr[3,2] = 2
+            /*int[,] arr = new int[6, 6] {
+            { 1, 1, 1, 0, 0, 0 },
+            { 0, 1, 0, 0, 0, 0 },
+            { 1, 1, 1, 0, 0, 0 },
+            { 0, 0, 2, 4, 4, 0 },
+            { 0, 0, 0, 2, 0, 0 },
+            { 0, 0, 1, 2, 4, 0 }
+            };
+            Console.WriteLine(HourGlassSum(arr));*/
+
+            /*var a = new int[] { 1, 2, 3, 4, 5 };
+            int d = 4;
+            var shiftedArray = RotLeft(a, d);
+            foreach (int num in shiftedArray)
+            {
+                Console.Write(num + " ");
+            }*/
+
+            /*var q = new int[] { 1, 2, 5, 3, 7, 8, 6, 4 };
+            MinimumBribes(q);*/
+
+            var arr = new int[] { 4, 3, 1, 2, };
+            Console.WriteLine("Minimum Swaps: " + MinimumSwaps(arr));
 
             Console.Read();
         }
 
         
-        static void staircase(int n)
+        static void Staircase(int n)
         {
             //WIP
             //Given n, the number of steps in a staircase, build the staircase. Use "#" as char to build the staircase.
@@ -180,5 +206,122 @@ namespace HackerRankQuestions
 
             return multiple;
         }
+
+        static int HourGlassSum(int[,] arr)
+        {
+            /*There are  hourglasses in . An hourglass sum is the sum of an hourglass' values. 
+             * Calculate the hourglass sum for every hourglass in , then print the maximum hourglass sum. The array will always be 6 x 6. */
+
+
+            //Store hour glass sums in array to be printed at the end
+            //as i add each int hourglass sum to int[] sums array, use an int to track the largest sum so far. If the current sum is larger than the maxSum, set maxSum = current sum
+            int maxSum = int.MinValue;
+            var sums = new int[16];
+            int limit = Convert.ToInt32(Math.Sqrt(arr.Length)) - 2;
+            Console.Write(arr.Length);
+
+            for(int i=0; i< limit; i++)
+            {
+                for (int j = 0; j < limit; j++)
+                {
+                    sums[i] = arr[i, j] + arr[i, j + 1] + arr[i, j+2] + arr[i+1, j+1] +arr[i+2, j] + arr[i+2, j+1] + arr[i+2, j+2];
+                    Console.WriteLine("Hour Glass Sum: " + sums[i] + "\nMax Sum: " + maxSum);
+                    if (sums[i] > maxSum)
+                    {
+                        maxSum = sums[i];
+                    }
+                }
+                
+            }
+
+            return maxSum;
+        }
+
+
+        static int[] RotLeft(int[] a, int d)
+        {
+            //A left rotation operation on an array shifts each of the array's elements 1 unit to the left. For example, 
+            //if 2 left rotations are performed on array [1, 2, 3, 4, 5] then the array would become [3, 4, 5, 1, 2].
+            //Given an array a of n integers and a number, d, perform d left rotations on the array. Return the updated array to be printed as a single line of space-separated integers.
+
+            var b = new int[a.Length];
+
+            for (int i=0; i<a.Length; i++)
+            {
+                if (i - d < 0)
+                {
+                    int index = 
+                    b[a.Length + (i - d)] = a[i];
+                }
+                else
+                {
+                    b[i - d] = a[i];
+                }
+            }
+            return b;
+        }
+
+        static void MinimumBribes(int[] q)
+        {
+            /*It's New Year's Day and everyone's in line for the Wonderland rollercoaster ride! There are a number of people queued up, and each person wears a sticker indicating their initial position in the queue. Initial positions increment by  from  at the front of the line to  at the back.
+            Any person in the queue can bribe the person directly in front of them to swap positions. If two people swap positions, they still wear the same sticker denoting their original places in line. One person can bribe at most two others. For example, if  and  bribes , the queue will look like this: .
+            Fascinated by this chaotic queue, you decide you must know the minimum number of bribes that took place to get the queue into its current state!
+            print an integer representing the minimum number of bribes necessary, or Too chaotic if the line configuration is not possible.*/
+
+            int n = q.Length;
+            int bribes = 0;
+
+            for (int i=0; i < n; i++)
+            {
+                int index = i+1;
+                //Console.WriteLine("i: " + index + " | q[i]: " + q[i]);
+                //if a person q[i] has bribed 2 people, print "too chaotic" and exit method 
+                if(q[i] - index > 2)
+                {
+                    //Console.WriteLine(bribes);
+                    Console.WriteLine("Too chaotic");
+                    return;
+                }
+                //use Math.max to ensure q[i]-2 wont't return a negative number. 
+                //check if a person has moved ahead of another, if so increment int bribes
+                for(int j=Math.Max(0, q[i]-2); j<i; j++)
+                {
+                    if (q[j] > q[i])
+                    {
+                        bribes++;
+                    }
+                }
+            }
+            Console.WriteLine("Bribes: " + bribes);
+        }
+
+        static int MinimumSwaps(int[] arr)
+        {
+            /*You are given an unordered array consisting of consecutive integers  [1, 2, 3, ..., n] without any duplicates. You are allowed to swap any two elements. 
+             * You need to find the minimum number of swaps required to sort the array in ascending order. */
+
+            int swap = 0;
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (i + 1 != arr[i])
+                {
+                    int t = i;
+                    //increment t until arr[t] = index we're looking for
+                    while (arr[t] != i + 1)
+                    {
+                        t++;
+                    }
+                    //swap a[i] with a[t]
+                    int temp = arr[t];
+                    arr[t] = arr[i];
+                    arr[i] = temp;
+                    swap++;
+                }
+            }
+            return swap;
+        }
+
+
     }
 }
