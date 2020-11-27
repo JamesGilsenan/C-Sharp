@@ -28,7 +28,7 @@ namespace HackerRankQuestions
             Console.WriteLine("Answer: " + RepeatedString(s, n));*/
 
             //x = rows, y = columns. arr[5,4] = 4. arr[3,2] = 2
-            int[,] arr = new int[6, 6] {
+            /*int[,] arr = new int[6, 6] {
             { 1, 1, 1, 0, 0, 0 },
             { 0, 1, 0, 0, 0, 0 },
             { 1, 1, 1, 0, 0, 0 },
@@ -36,7 +36,15 @@ namespace HackerRankQuestions
             { 0, 0, 0, 2, 0, 0 },
             { 0, 0, 1, 2, 4, 0 }
             };
-            Console.WriteLine(HourGlassSum(arr));
+            Console.WriteLine(HourGlassSum(arr));*/
+
+            var a = new int[] { 1, 2, 3, 4, 5 };
+            int d = 4;
+            var shiftedArray = RotLeft(a, d);
+            foreach (int num in shiftedArray)
+            {
+                Console.Write(num + " ");
+            }
 
             Console.Read();
         }
@@ -220,6 +228,30 @@ namespace HackerRankQuestions
             }
 
             return maxSum;
+        }
+
+
+        static int[] RotLeft(int[] a, int d)
+        {
+            //A left rotation operation on an array shifts each of the array's elements 1 unit to the left. For example, 
+            //if 2 left rotations are performed on array [1, 2, 3, 4, 5] then the array would become [3, 4, 5, 1, 2].
+            //Given an array a of n integers and a number, d, perform d left rotations on the array. Return the updated array to be printed as a single line of space-separated integers.
+
+            var b = new int[a.Length];
+
+            for (int i=0; i<a.Length; i++)
+            {
+                if (i - d < 0)
+                {
+                    int index = 
+                    b[a.Length + (i - d)] = a[i];
+                }
+                else
+                {
+                    b[i - d] = a[i];
+                }
+            }
+            return b;
         }
 
 
