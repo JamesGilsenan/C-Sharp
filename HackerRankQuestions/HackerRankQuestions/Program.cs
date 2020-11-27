@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -46,8 +47,11 @@ namespace HackerRankQuestions
                 Console.Write(num + " ");
             }*/
 
-            var q = new int[] { 1, 2, 5, 3, 7, 8, 6, 4 };
-            MinimumBribes(q);
+            /*var q = new int[] { 1, 2, 5, 3, 7, 8, 6, 4 };
+            MinimumBribes(q);*/
+
+            var arr = new int[] { 4, 3, 1, 2, };
+            Console.WriteLine("Minimum Swaps: " + MinimumSwaps(arr));
 
             Console.Read();
         }
@@ -296,10 +300,26 @@ namespace HackerRankQuestions
             /*You are given an unordered array consisting of consecutive integers  [1, 2, 3, ..., n] without any duplicates. You are allowed to swap any two elements. 
              * You need to find the minimum number of swaps required to sort the array in ascending order. */
 
-            int swaps = 0;
+            int swap = 0;
 
-
-            return swaps;
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (i + 1 != arr[i])
+                {
+                    int t = i;
+                    //increment t until arr[t] = index we're looking for
+                    while (arr[t] != i + 1)
+                    {
+                        t++;
+                    }
+                    //swap a[i] with a[t]
+                    int temp = arr[t];
+                    arr[t] = arr[i];
+                    arr[i] = temp;
+                    swap++;
+                }
+            }
+            return swap;
         }
 
 
