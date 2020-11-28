@@ -53,9 +53,16 @@ namespace HackerRankQuestions
             /*var arr = new int[] { 4, 3, 1, 2, };
             Console.WriteLine("Minimum Swaps: " + MinimumSwaps(arr));*/
 
-            var magazine = new string[] { "give", "me", "one", "grand", "today", "night" };
+            /*var magazine = new string[] { "give", "me", "one", "grand", "today", "night" };
             var note = new string[] { "give", "one", "grand", "today" };
-            CheckMagazine(magazine, note);
+            CheckMagazine(magazine, note);*/
+
+            string s1 = "wouldyoulikefries";
+            string s2 = "abcabcabcabcabcabc";
+            string s3 = "hackerrankcommunity";
+            string s4 = "cdecdecdecde";
+            Console.WriteLine(TwoStrings(s1, s2));
+            Console.WriteLine(TwoStrings(s3, s4));
 
             Console.Read();
         }
@@ -370,6 +377,27 @@ namespace HackerRankQuestions
                 }
             }
             Console.WriteLine("Yes");
+        }
+
+        static string TwoStrings(string s1, string s2)
+        {
+            /*Given two strings, determine if they share a common substring. A substring may be as small as one character.
+            For example, the words "a", "and", "art" share the common substring . The words "be" and "cat" do not share a substring. 
+            It should return a string, either YES or NO based on whether the strings share a common substring. */
+
+            var aChars = new HashSet<char>(s1.ToList());
+            var bChars = s2.ToList();
+            
+            foreach (char letter in bChars)
+            {
+                if(aChars.Contains(letter))
+                {
+                    return "YES";
+                }
+            }
+
+            return "NO";
+
         }
 
 
