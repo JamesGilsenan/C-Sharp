@@ -301,23 +301,28 @@ namespace HackerRankQuestions
              * You need to find the minimum number of swaps required to sort the array in ascending order. */
 
             int swap = 0;
+            int i = 0;
 
-            for (int i = 0; i < arr.Length; i++)
+            while(i < arr.Length)
             {
+                // If current element is 
+                // not at the right position
                 if (i + 1 != arr[i])
                 {
-                    int t = i;
                     //increment t until arr[t] = index we're looking for
-                    while (arr[t] != i + 1)
+                    while (arr[i] != i + 1)
                     {
-                        t++;
+                        int temp = 0;
+
+                        // Swap current element with correct position of that element 
+                        temp = arr[arr[i] -1];
+                        arr[arr[i] - 1] = arr[i];
+                        arr[i] = temp;
+                        swap++;
                     }
-                    //swap a[i] with a[t]
-                    int temp = arr[t];
-                    arr[t] = arr[i];
-                    arr[i] = temp;
-                    swap++;
                 }
+                // Increment for next index when current element is at correct position 
+                i++;
             }
             return swap;
         }
