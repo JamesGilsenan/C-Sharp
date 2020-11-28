@@ -50,8 +50,12 @@ namespace HackerRankQuestions
             /*var q = new int[] { 1, 2, 5, 3, 7, 8, 6, 4 };
             MinimumBribes(q);*/
 
-            var arr = new int[] { 4, 3, 1, 2, };
-            Console.WriteLine("Minimum Swaps: " + MinimumSwaps(arr));
+            /*var arr = new int[] { 4, 3, 1, 2, };
+            Console.WriteLine("Minimum Swaps: " + MinimumSwaps(arr));*/
+
+            var magazine = new string[] { "give", "me", "one", "grand", "today", "night" };
+            var note = new string[] { "give", "one", "grand", "today" };
+            CheckMagazine(magazine, note);
 
             Console.Read();
         }
@@ -325,6 +329,47 @@ namespace HackerRankQuestions
                 i++;
             }
             return swap;
+        }
+
+        static void CheckMagazine(string[] magazine, string[] note)
+        {
+            /*Harold is a kidnapper who wrote a ransom note, but now he is worried it will be traced back to him through his handwriting. 
+             * He found a magazine and wants to know if he can cut out whole words from it and use them to create an untraceable replica of his ransom note. 
+             * The words in his note are case-sensitive and he must use only whole words available in the magazine. He cannot use substrings or concatenation to create the words he needs.
+            Given the words in the magazine and the words in the ransom note, print Yes if he can replicate his ransom note exactly using whole words from the magazine; otherwise, print No.
+            For example, the note is "Attack at dawn". The magazine contains only "attack at dawn". The magazine has all the right words, but there's a case mismatch. The answer is No.
+            It must print Yes if the note can be formed using the magazine, or No. */
+
+            Dictionary<string, int> dict = new Dictionary<string, int>();
+            for (int i=0; i<magazine.Length; i++)
+            {
+                if(dict.ContainsKey(magazine[i]) == false)
+                {
+                    dict.Add(magazine[i], 1);
+                }
+                else
+                {
+                    dict[magazine[i]] += 1;
+                }
+            }
+            /*foreach (KeyValuePair<string, int> keyValuePair in dict)
+            {
+                Console.WriteLine("Key: " + keyValuePair.Key + " | Pair: " + keyValuePair.Value);
+            }*/
+
+            for (int i=0; i<note.Length; i++)
+            {
+                if (dict.ContainsKey(note[i]) == false || dict[note[i]] < 1)
+                {
+                    Console.WriteLine("No");
+                    return;
+                }
+                else
+                {
+                    dict[note[i]] -= 1;
+                }
+            }
+            Console.WriteLine("Yes");
         }
 
 
