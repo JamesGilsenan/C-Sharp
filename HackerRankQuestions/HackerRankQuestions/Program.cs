@@ -78,13 +78,13 @@ namespace HackerRankQuestions
             /*int l = 3, r = 9;
             OddNumbers(l, r);*/
 
-            var prices = new List<int> { 1, 2, 3, 4 };
-            //var prices = new List<int> { 4, 9, 2, 3 };
-            Console.WriteLine("Total: " + CalculateAmount(prices));
+            /*var prices = new List<int> { 1, 2, 3, 4 };
+            var prices = new List<int> { 4, 9, 2, 3 };
+            Console.WriteLine("Total: " + CalculateAmount(prices)); */
 
-            /*var ops = new List<string> { "push", "push", "push", "pop" };
+            var ops = new List<string> { "push", "push", "push", "pop" };
             var x = new List<int> { 1, 2, 3, 1 };
-            MaxMin(ops, x); */
+            MaxMin(ops, x);
 
 
             Console.Read();
@@ -549,9 +549,9 @@ namespace HackerRankQuestions
             long totalPrice = 0;
             int lowestPrice = prices[0];
 
-            foreach (var price in prices)
+            if (prices.Count == 1)
             {
-                Console.WriteLine(price);
+                return lowestPrice;
             }
 
             for (int i = 1; i < prices.Count; i++)
@@ -583,6 +583,44 @@ namespace HackerRankQuestions
             4th item = 4 - 1 = 3         lowest price of prev item = 1
             Total Price = 7 = 1 + 1 + 2 + 3
             */
+        }
+
+        public static List<long> MaxMin(List<string> operations, List<int> x)
+        {
+            //return a list populated with the product of the min and max values of elements
+            //elements is list of int populated by the "push/pop" operations given from operations
+            var products = new List<long>();
+            var elements = new List<int>();
+            elements.Add(x[0]);
+            products.Add(x[0] * x[0]);
+
+            for (int i=1; i < operations.Count; i++)
+            {
+                if(operations[i] == "push" && x[i] < elements[0])
+                {
+                    elements.Insert(0, x[i]);
+                }
+                else if(operations[i] == "push" && x[i] > elements[elements.Count - 1])
+                {
+                    elements.Add(x[i]);
+                }
+                else if(operations[i] == "push")
+                {
+                    elements.Insert(1, x[i]);
+                }
+                else
+                {
+                    elements.Remove(x[i]);
+                }
+                products.Add(elements[0] * elements[elements.Count - 1]);
+            }
+            /*foreach(var num in products)
+            {
+                Console.WriteLine(num);
+            }*/
+
+            return products;
+            //ans = 1, 2, 3, 6
         }
 
         /*
