@@ -57,12 +57,19 @@ namespace HackerRankQuestions
             var note = new string[] { "give", "one", "grand", "today" };
             CheckMagazine(magazine, note);*/
 
-            string s1 = "wouldyoulikefries";
+            /*string s1 = "wouldyoulikefries";
             string s2 = "abcabcabcabcabcabc";
             string s3 = "hackerrankcommunity";
             string s4 = "cdecdecdecde";
             Console.WriteLine(TwoStrings(s1, s2));
-            Console.WriteLine(TwoStrings(s3, s4));
+            Console.WriteLine(TwoStrings(s3, s4));*/
+
+            /*&string a = "cde";
+            string b = "abc";
+            Console.WriteLine("Deletions: " + MakeAnagram(a, b));*/
+
+            string s = "AAABBB";
+            Console.WriteLine("Deletions: " + AlternatingCharacters(s));
 
             Console.Read();
         }
@@ -156,7 +163,6 @@ namespace HackerRankQuestions
             return valleys;
         }
 
-
         static int JumpingOnClouds(int[] c)
         {
             /*Emma is playing a new mobile game that starts with consecutively numbered clouds. Some of the clouds are thunderheads and others are cumulus. 
@@ -220,6 +226,7 @@ namespace HackerRankQuestions
 
         static int HourGlassSum(int[,] arr)
         {
+            //Arrays
             /*There are  hourglasses in . An hourglass sum is the sum of an hourglass' values. 
              * Calculate the hourglass sum for every hourglass in , then print the maximum hourglass sum. The array will always be 6 x 6. */
 
@@ -251,6 +258,7 @@ namespace HackerRankQuestions
 
         static int[] RotLeft(int[] a, int d)
         {
+            //Arrays
             //A left rotation operation on an array shifts each of the array's elements 1 unit to the left. For example, 
             //if 2 left rotations are performed on array [1, 2, 3, 4, 5] then the array would become [3, 4, 5, 1, 2].
             //Given an array a of n integers and a number, d, perform d left rotations on the array. Return the updated array to be printed as a single line of space-separated integers.
@@ -274,6 +282,7 @@ namespace HackerRankQuestions
 
         static void MinimumBribes(int[] q)
         {
+            //Arrays
             /*It's New Year's Day and everyone's in line for the Wonderland rollercoaster ride! There are a number of people queued up, and each person wears a sticker indicating their initial position in the queue. Initial positions increment by  from  at the front of the line to  at the back.
             Any person in the queue can bribe the person directly in front of them to swap positions. If two people swap positions, they still wear the same sticker denoting their original places in line. One person can bribe at most two others. For example, if  and  bribes , the queue will look like this: .
             Fascinated by this chaotic queue, you decide you must know the minimum number of bribes that took place to get the queue into its current state!
@@ -308,6 +317,7 @@ namespace HackerRankQuestions
 
         static int MinimumSwaps(int[] arr)
         {
+            //Arrays
             /*You are given an unordered array consisting of consecutive integers  [1, 2, 3, ..., n] without any duplicates. You are allowed to swap any two elements. 
              * You need to find the minimum number of swaps required to sort the array in ascending order. */
 
@@ -340,6 +350,7 @@ namespace HackerRankQuestions
 
         static void CheckMagazine(string[] magazine, string[] note)
         {
+            //Dicts & Hashmaps
             /*Harold is a kidnapper who wrote a ransom note, but now he is worried it will be traced back to him through his handwriting. 
              * He found a magazine and wants to know if he can cut out whole words from it and use them to create an untraceable replica of his ransom note. 
              * The words in his note are case-sensitive and he must use only whole words available in the magazine. He cannot use substrings or concatenation to create the words he needs.
@@ -381,6 +392,7 @@ namespace HackerRankQuestions
 
         static string TwoStrings(string s1, string s2)
         {
+            //Dicts & Hashmaps
             /*Given two strings, determine if they share a common substring. A substring may be as small as one character.
             For example, the words "a", "and", "art" share the common substring . The words "be" and "cat" do not share a substring. 
             It should return a string, either YES or NO based on whether the strings share a common substring. */
@@ -395,10 +407,92 @@ namespace HackerRankQuestions
                     return "YES";
                 }
             }
-
             return "NO";
 
         }
+
+        static int MakeAnagram(string a, string b)
+        {
+            /*Given two strings, a and b, that may or may not be of the same length, determine the minimum number of character deletions required to make a and b anagrams. 
+            * Any characters can be deleted from either of the strings.
+            For example, if a = cde and b = dcf, we can delete e from string a and f from string b so that both remaining strings are cd and dc which are anagrams. */
+
+            //Same letters && same frequency of letters
+            //Use dict/hashtable because search, insertion and deletion are O(1) time complexity
+            //Store both strings as dict<char, int>
+            //Console.WriteLine(A);
+            int deletions = 0;
+            var dict = new Dictionary<char, int>();
+
+            for (int i = 0; i < a.Length; i++)
+            {
+                if (!dict.ContainsKey(a[i]))
+                {
+                    dict.Add(a[i], 1);
+                }
+                else
+                {
+                    dict[a[i]] += 1;
+                }
+            }
+
+            for (int i = 0; i < b.Length; i++)
+            {
+                if (dict.ContainsKey(b[i]) && dict[b[i]] > 0)
+                {
+                    dict[b[i]] -= 1;
+                }
+                else
+                {
+                    //char b[i] would have to be deleted
+                    deletions++;
+                }
+            }
+            return deletions + Math.Abs(a.Length - (b.Length - deletions));
+        }
+
+        static int AlternatingCharacters(string s)
+        {
+            /*You are given a string containing characters A and B only. Your task is to change it into a string such that there are no matching adjacent characters. 
+            * To do this, you are allowed to delete zero or more characters in the string. Your task is to find the minimum number of required deletions.
+            For example, given the string AABAAB, remove an A at positions 0 and 3 to make s = ABAB in 2 deletions. */
+
+            /*var str = "My name @is ,Wan.;'; Wan";
+            var charsToRemove = new string[] { "@", ",", ".", ";", "'" };
+            foreach (var c in charsToRemove)
+            {
+                str = str.Replace(c, string.Empty);
+            } /*
+
+            /*var str = "My name @is ,Wan.;'; Wan";
+            str = new string((from c in str
+                  where char.IsWhiteSpace(c) || char.IsLetterOrDigit(c)
+                  select c
+            ).ToArray()); */
+
+            int deletions = 0;
+            var set = new HashSet<char>(s);
+            //if there is only 1 char in hashset, number of deletions will equal the length of string s minus 1
+            if (set.Count == 1)
+            {
+                return s.Length - 1;
+            }
+
+            //if a deletion occurs, we skip that char, so our loop runs n = (length of string s - 1) - deletions
+            for (int i = 0; i < s.Length-1-deletions; i++)
+            {
+                //Console.WriteLine("Index: " + i + " | s[i] " + s[i] + " | s[s[i+1+deletions]] " + s[i + 1 + deletions]);
+                //i + deletions to skip comparison for deleted chars
+                if (s[i + deletions] == s[i + deletions + 1])
+                {
+                    deletions++;
+                    //Console.WriteLine("Deleting... " + deletions);
+                    i--;
+                }
+            }
+            return deletions;
+        }
+
 
 
     }
