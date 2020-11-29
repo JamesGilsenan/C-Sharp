@@ -50,8 +50,19 @@ namespace HackerRankQuestions
             /*var q = new int[] { 1, 2, 5, 3, 7, 8, 6, 4 };
             MinimumBribes(q);*/
 
-            var arr = new int[] { 4, 3, 1, 2, };
-            Console.WriteLine("Minimum Swaps: " + MinimumSwaps(arr));
+            /*var arr = new int[] { 4, 3, 1, 2, };
+            Console.WriteLine("Minimum Swaps: " + MinimumSwaps(arr));*/
+
+            /*var magazine = new string[] { "give", "me", "one", "grand", "today", "night" };
+            var note = new string[] { "give", "one", "grand", "today" };
+            CheckMagazine(magazine, note);*/
+
+            string s1 = "wouldyoulikefries";
+            string s2 = "abcabcabcabcabcabc";
+            string s3 = "hackerrankcommunity";
+            string s4 = "cdecdecdecde";
+            Console.WriteLine(TwoStrings(s1, s2));
+            Console.WriteLine(TwoStrings(s3, s4));
 
             Console.Read();
         }
@@ -301,25 +312,92 @@ namespace HackerRankQuestions
              * You need to find the minimum number of swaps required to sort the array in ascending order. */
 
             int swap = 0;
+            int i = 0;
 
-            for (int i = 0; i < arr.Length; i++)
+            while(i < arr.Length)
             {
+                // If current element is 
+                // not at the right position
                 if (i + 1 != arr[i])
                 {
-                    int t = i;
                     //increment t until arr[t] = index we're looking for
-                    while (arr[t] != i + 1)
+                    while (arr[i] != i + 1)
                     {
-                        t++;
+                        int temp = 0;
+
+                        // Swap current element with correct position of that element 
+                        temp = arr[arr[i] -1];
+                        arr[arr[i] - 1] = arr[i];
+                        arr[i] = temp;
+                        swap++;
                     }
-                    //swap a[i] with a[t]
-                    int temp = arr[t];
-                    arr[t] = arr[i];
-                    arr[i] = temp;
-                    swap++;
                 }
+                // Increment for next index when current element is at correct position 
+                i++;
             }
             return swap;
+        }
+
+        static void CheckMagazine(string[] magazine, string[] note)
+        {
+            /*Harold is a kidnapper who wrote a ransom note, but now he is worried it will be traced back to him through his handwriting. 
+             * He found a magazine and wants to know if he can cut out whole words from it and use them to create an untraceable replica of his ransom note. 
+             * The words in his note are case-sensitive and he must use only whole words available in the magazine. He cannot use substrings or concatenation to create the words he needs.
+            Given the words in the magazine and the words in the ransom note, print Yes if he can replicate his ransom note exactly using whole words from the magazine; otherwise, print No.
+            For example, the note is "Attack at dawn". The magazine contains only "attack at dawn". The magazine has all the right words, but there's a case mismatch. The answer is No.
+            It must print Yes if the note can be formed using the magazine, or No. */
+
+            Dictionary<string, int> dict = new Dictionary<string, int>();
+            for (int i=0; i<magazine.Length; i++)
+            {
+                if(dict.ContainsKey(magazine[i]) == false)
+                {
+                    dict.Add(magazine[i], 1);
+                }
+                else
+                {
+                    dict[magazine[i]] += 1;
+                }
+            }
+            /*foreach (KeyValuePair<string, int> keyValuePair in dict)
+            {
+                Console.WriteLine("Key: " + keyValuePair.Key + " | Pair: " + keyValuePair.Value);
+            }*/
+
+            for (int i=0; i<note.Length; i++)
+            {
+                if (dict.ContainsKey(note[i]) == false || dict[note[i]] < 1)
+                {
+                    Console.WriteLine("No");
+                    return;
+                }
+                else
+                {
+                    dict[note[i]] -= 1;
+                }
+            }
+            Console.WriteLine("Yes");
+        }
+
+        static string TwoStrings(string s1, string s2)
+        {
+            /*Given two strings, determine if they share a common substring. A substring may be as small as one character.
+            For example, the words "a", "and", "art" share the common substring . The words "be" and "cat" do not share a substring. 
+            It should return a string, either YES or NO based on whether the strings share a common substring. */
+
+            var aChars = new HashSet<char>(s1.ToList());
+            var bChars = s2.ToList();
+            
+            foreach (char letter in bChars)
+            {
+                if(aChars.Contains(letter))
+                {
+                    return "YES";
+                }
+            }
+
+            return "NO";
+
         }
 
 
