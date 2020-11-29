@@ -64,9 +64,12 @@ namespace HackerRankQuestions
             Console.WriteLine(TwoStrings(s1, s2));
             Console.WriteLine(TwoStrings(s3, s4));*/
 
-            string a = "cde";
+            /*&string a = "cde";
             string b = "abc";
-            Console.WriteLine("Deletions: " + MakeAnagram(a, b));
+            Console.WriteLine("Deletions: " + MakeAnagram(a, b));*/
+
+            string s = "AAABBB";
+            Console.WriteLine("Deletions: " + AlternatingCharacters(s));
 
             Console.Read();
         }
@@ -448,7 +451,36 @@ namespace HackerRankQuestions
             return deletions + Math.Abs(a.Length - (b.Length - deletions));
         }
 
+        static int AlternatingCharacters(string s)
+        {
+            /*You are given a string containing characters A and B only. Your task is to change it into a string such that there are no matching adjacent characters. 
+            * To do this, you are allowed to delete zero or more characters in the string. Your task is to find the minimum number of required deletions.
+            For example, given the string AABAAB, remove an A at positions 0 and 3 to make s = ABAB in 2 deletions. */
 
+            int deletions = 0;
+            var set = new HashSet<char>(s);
+            //if there is only 1 char in hashset, number of deletions will equal the length of string s minus 1
+            if (set.Count == 1)
+            {
+                return s.Length - 1;
+            }
+
+            //if a deletion occurs, we skip that char, so our loop runs n = (length of string s - 1) - deletions
+            for (int i = 0; i < s.Length-1-deletions; i++)
+            {
+                //Console.WriteLine("Index: " + i + " | s[i] " + s[i] + " | s[s[i+1+deletions]] " + s[i + 1 + deletions]);
+                //i + deletions to skip comparison for deleted chars
+                if (s[i + deletions] == s[i + deletions + 1])
+                {
+                    deletions++;
+                    Console.WriteLine("Deleting... " + deletions);
+                    i--;
+                }
+            }
+            return deletions;
+        }
+
+        
 
     }
 }
