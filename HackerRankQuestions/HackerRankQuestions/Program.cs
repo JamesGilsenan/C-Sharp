@@ -68,13 +68,29 @@ namespace HackerRankQuestions
             string b = "abc";
             Console.WriteLine("Deletions: " + MakeAnagram(a, b));*/
 
-            string s = "AAABBB";
-            Console.WriteLine("Deletions: " + AlternatingCharacters(s));
+            /*string s = "AAABBB";
+            Console.WriteLine("Deletions: " + AlternatingCharacters(s));*/
+
+            /*var array = new List<int> { 2, 3, 1 };
+            int k = 3;
+            FindNumber(array, 3); */
+
+            /*int l = 3, r = 9;
+            OddNumbers(l, r);*/
+
+            /*var prices = new List<int> { 1, 2, 3, 4 };
+            var prices = new List<int> { 4, 9, 2, 3 };
+            Console.WriteLine("Total: " + CalculateAmount(prices)); */
+
+            var ops = new List<string> { "push", "push", "push", "pop" };
+            var x = new List<int> { 1, 2, 3, 1 };
+            MaxMin(ops, x);
+
 
             Console.Read();
         }
 
-        
+
         static void Staircase(int n)
         {
             //WIP
@@ -92,7 +108,6 @@ namespace HackerRankQuestions
             }
         }
 
-        
         static int SockMerchant(int n, int[] ar)
         {
             //Given n, the number of socks in array ar, and an array of socks, return the number of pairs of socks.
@@ -148,7 +163,7 @@ namespace HackerRankQuestions
                     altitude++;
                 }
                 //Check if i am at sealevel (0). If I am ANDnext step is 'D', I am walking down into a valley
-                else if(step == 'D' && altitude == 0)
+                else if (step == 'D' && altitude == 0)
                 {
                     valleys++;
                     altitude--;
@@ -173,7 +188,7 @@ namespace HackerRankQuestions
             int jumps = 0;
             int currentCloud = 0;
 
-            while(currentCloud < c.Length - 1)
+            while (currentCloud < c.Length - 1)
             {
                 if (currentCloud + 2 >= c.Length - 1)
                     return jumps += 1;
@@ -238,23 +253,22 @@ namespace HackerRankQuestions
             int limit = Convert.ToInt32(Math.Sqrt(arr.Length)) - 2;
             Console.Write(arr.Length);
 
-            for(int i=0; i< limit; i++)
+            for (int i = 0; i < limit; i++)
             {
                 for (int j = 0; j < limit; j++)
                 {
-                    sums[i] = arr[i, j] + arr[i, j + 1] + arr[i, j+2] + arr[i+1, j+1] +arr[i+2, j] + arr[i+2, j+1] + arr[i+2, j+2];
+                    sums[i] = arr[i, j] + arr[i, j + 1] + arr[i, j + 2] + arr[i + 1, j + 1] + arr[i + 2, j] + arr[i + 2, j + 1] + arr[i + 2, j + 2];
                     Console.WriteLine("Hour Glass Sum: " + sums[i] + "\nMax Sum: " + maxSum);
                     if (sums[i] > maxSum)
                     {
                         maxSum = sums[i];
                     }
                 }
-                
+
             }
 
             return maxSum;
         }
-
 
         static int[] RotLeft(int[] a, int d)
         {
@@ -265,11 +279,11 @@ namespace HackerRankQuestions
 
             var b = new int[a.Length];
 
-            for (int i=0; i<a.Length; i++)
+            for (int i = 0; i < a.Length; i++)
             {
                 if (i - d < 0)
                 {
-                    int index = 
+                    int index =
                     b[a.Length + (i - d)] = a[i];
                 }
                 else
@@ -291,12 +305,12 @@ namespace HackerRankQuestions
             int n = q.Length;
             int bribes = 0;
 
-            for (int i=0; i < n; i++)
+            for (int i = 0; i < n; i++)
             {
-                int index = i+1;
+                int index = i + 1;
                 //Console.WriteLine("i: " + index + " | q[i]: " + q[i]);
                 //if a person q[i] has bribed 2 people, print "too chaotic" and exit method 
-                if(q[i] - index > 2)
+                if (q[i] - index > 2)
                 {
                     //Console.WriteLine(bribes);
                     Console.WriteLine("Too chaotic");
@@ -304,7 +318,7 @@ namespace HackerRankQuestions
                 }
                 //use Math.max to ensure q[i]-2 wont't return a negative number. 
                 //check if a person has moved ahead of another, if so increment int bribes
-                for(int j=Math.Max(0, q[i]-2); j<i; j++)
+                for (int j = Math.Max(0, q[i] - 2); j < i; j++)
                 {
                     if (q[j] > q[i])
                     {
@@ -324,7 +338,7 @@ namespace HackerRankQuestions
             int swap = 0;
             int i = 0;
 
-            while(i < arr.Length)
+            while (i < arr.Length)
             {
                 // If current element is 
                 // not at the right position
@@ -336,7 +350,7 @@ namespace HackerRankQuestions
                         int temp = 0;
 
                         // Swap current element with correct position of that element 
-                        temp = arr[arr[i] -1];
+                        temp = arr[arr[i] - 1];
                         arr[arr[i] - 1] = arr[i];
                         arr[i] = temp;
                         swap++;
@@ -359,9 +373,9 @@ namespace HackerRankQuestions
             It must print Yes if the note can be formed using the magazine, or No. */
 
             Dictionary<string, int> dict = new Dictionary<string, int>();
-            for (int i=0; i<magazine.Length; i++)
+            for (int i = 0; i < magazine.Length; i++)
             {
-                if(dict.ContainsKey(magazine[i]) == false)
+                if (dict.ContainsKey(magazine[i]) == false)
                 {
                     dict.Add(magazine[i], 1);
                 }
@@ -375,7 +389,7 @@ namespace HackerRankQuestions
                 Console.WriteLine("Key: " + keyValuePair.Key + " | Pair: " + keyValuePair.Value);
             }*/
 
-            for (int i=0; i<note.Length; i++)
+            for (int i = 0; i < note.Length; i++)
             {
                 if (dict.ContainsKey(note[i]) == false || dict[note[i]] < 1)
                 {
@@ -399,10 +413,10 @@ namespace HackerRankQuestions
 
             var aChars = new HashSet<char>(s1.ToList());
             var bChars = s2.ToList();
-            
+
             foreach (char letter in bChars)
             {
-                if(aChars.Contains(letter))
+                if (aChars.Contains(letter))
                 {
                     return "YES";
                 }
@@ -479,7 +493,7 @@ namespace HackerRankQuestions
             }
 
             //if a deletion occurs, we skip that char, so our loop runs n = (length of string s - 1) - deletions
-            for (int i = 0; i < s.Length-1-deletions; i++)
+            for (int i = 0; i < s.Length - 1 - deletions; i++)
             {
                 //Console.WriteLine("Index: " + i + " | s[i] " + s[i] + " | s[s[i+1+deletions]] " + s[i + 1 + deletions]);
                 //i + deletions to skip comparison for deleted chars
@@ -493,7 +507,185 @@ namespace HackerRankQuestions
             return deletions;
         }
 
+        public static string FindNumber(List<int> arr, int k)
+        {
+            var set = new HashSet<int>(arr);
+            foreach (var num in set)
+            {
+                Console.WriteLine(num);
+            }
+            if (set.Contains(k))
+            {
+                return "Yes";
+            }
+            else
+            {
+                return "NO";
+            }
+        }
 
+        public static List<int> OddNumbers(int l, int r)
+        {
+            var myArray = new List<int>();
 
+            for (int i = 0; i <= r - l; i++)
+            {
+                int num = l + i;
+                if (num % 2 == 1)
+                {
+                    myArray.Add(num);
+                }
+            }
+            foreach (var num in myArray)
+            {
+                Console.WriteLine(num);
+            }
+            return myArray;
+        }
+
+        public static long CalculateAmount(List<int> prices)
+        {
+            //given list of prices. First item is not discounted. Every item after has a discount of lowest discount on prev prices.
+            long totalPrice = 0;
+            int lowestPrice = prices[0];
+
+            if (prices.Count == 1)
+            {
+                return lowestPrice;
+            }
+
+            for (int i = 1; i < prices.Count; i++)
+            {
+                Console.WriteLine("LP: " + lowestPrice);
+                
+                totalPrice += Math.Max(0, prices[i] - lowestPrice);
+                Console.WriteLine("TP: " + totalPrice + " = price" + (i + 1) + ": " + prices[i] + " - " + lowestPrice);
+
+                if (prices[i] < lowestPrice)
+                {
+                    lowestPrice = prices[i];
+                }
+            }
+
+            return totalPrice + prices[0];
+            /*ans = 10
+            Prices = 4,9,2,3
+            1st item = 4                no discount
+            2nd item = 9 - 4 = 5        lowest price of prev item = 4
+            3rd item = 2 - 4 = -2 = 0   cannot be negaitve. price = 0
+            4th item = 3 - 2 = 1        lowest price of prev item = 2
+            Total Price = 10 = 4 + 5 + 0 + 1
+            
+            Prices = 1,2,3,4 
+            1st item = no discount = 1
+            2nd item = 2 - 1 = 1         lowest price of prev item = 1
+            3rd item = 3 - 1 = 2    lowest price of prev item = 1
+            4th item = 4 - 1 = 3         lowest price of prev item = 1
+            Total Price = 7 = 1 + 1 + 2 + 3
+            */
+        }
+
+        public static List<long> MaxMin(List<string> operations, List<int> x)
+        {
+            //return a list populated with the product of the min and max values of elements
+            //elements is list of int populated by the "push/pop" operations given from operations
+            var products = new List<long>();
+            var elements = new List<int>();
+            elements.Add(x[0]);
+            products.Add(x[0] * x[0]);
+
+            for (int i=1; i < operations.Count; i++)
+            {
+                if(operations[i] == "push" && x[i] < elements[0])
+                {
+                    elements.Insert(0, x[i]);
+                }
+                else if(operations[i] == "push" && x[i] > elements[elements.Count - 1])
+                {
+                    elements.Add(x[i]);
+                }
+                else if(operations[i] == "push")
+                {
+                    elements.Insert(1, x[i]);
+                }
+                else
+                {
+                    elements.Remove(x[i]);
+                }
+                products.Add(elements[0] * elements[elements.Count - 1]);
+            }
+            /*foreach(var num in products)
+            {
+                Console.WriteLine(num);
+            }*/
+
+            return products;
+            //ans = 1, 2, 3, 6
+        }
+
+        /*
+        public static long CalculateAmount(List<int> prices)
+        {
+            //given list of prices. First item is not discounted. Every item after has a discount of lowest discount on prev prices.
+            long totalPrice = 0;
+            int lowestPrice = prices[0];
+
+            foreach (var price in prices)
+            {
+                Console.WriteLine(price);
+            }
+
+            for (int i = 1; i < prices.Count; i++)
+            {
+                int discountedPrice = Math.Max(0, prices[i] - lowestPrice);
+                totalPrice += discountedPrice;
+
+                Console.WriteLine("DP: " + discountedPrice + "LP: " + lowestPrice);
+
+                if (discountedPrice < lowestPrice)
+                {
+                    lowestPrice = discountedPrice;
+                }
+
+                Console.WriteLine("DP: " + discountedPrice);
+            }
+
+            return totalPrice + prices[0];
+            //ans = 10
+        }
+
+        public static List<long> MaxMin(List<string> operations, List<int> x)
+        {
+            var elements = new List<int>();
+            var products = new List<long>();
+
+            foreach(var num in x)
+            {
+                Console.WriteLine(num);
+            }
+            elements.Add(x[0]);
+
+            for (int i = 1; i < operations.Count; i++)
+            {
+                if (operations[i] == "push" && x[i] < elements[0])
+                {
+                    elements.Insert(0, x[i]);
+                }
+                else if (operations[i] == "push" && x[i] > elements[0])
+                {
+                    elements.Add(x[i]);
+                }
+                else
+                {
+                    elements.Remove(x[i]);
+                }
+                products.Add((elements[0] * (elements[elements.Count - 1])));
+
+                Console.WriteLine(products[i-1]);
+            }
+            return products;
+            //ans = 1, 2, 3, 6
+        }
+        */
     }
 }
