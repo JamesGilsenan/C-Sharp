@@ -78,8 +78,8 @@ namespace HackerRankQuestions
             /*int l = 3, r = 9;
             OddNumbers(l, r);*/
 
-            //var prices = new List<int> { 1, 2, 3, 4 };
-            var prices = new List<int> { 4, 9, 2, 3 };
+            var prices = new List<int> { 1, 2, 3, 4 };
+            //var prices = new List<int> { 4, 9, 2, 3 };
             Console.WriteLine("Total: " + CalculateAmount(prices));
 
             /*var ops = new List<string> { "push", "push", "push", "pop" };
@@ -541,6 +541,48 @@ namespace HackerRankQuestions
                 Console.WriteLine(num);
             }
             return myArray;
+        }
+
+        public static long CalculateAmount(List<int> prices)
+        {
+            //given list of prices. First item is not discounted. Every item after has a discount of lowest discount on prev prices.
+            long totalPrice = 0;
+            int lowestPrice = prices[0];
+
+            foreach (var price in prices)
+            {
+                Console.WriteLine(price);
+            }
+
+            for (int i = 1; i < prices.Count; i++)
+            {
+                Console.WriteLine("LP: " + lowestPrice);
+                
+                totalPrice += Math.Max(0, prices[i] - lowestPrice);
+                Console.WriteLine("TP: " + totalPrice + " = price" + (i + 1) + ": " + prices[i] + " - " + lowestPrice);
+
+                if (prices[i] < lowestPrice)
+                {
+                    lowestPrice = prices[i];
+                }
+            }
+
+            return totalPrice + prices[0];
+            /*ans = 10
+            Prices = 4,9,2,3
+            1st item = 4                no discount
+            2nd item = 9 - 4 = 5        lowest price of prev item = 4
+            3rd item = 2 - 4 = -2 = 0   cannot be negaitve. price = 0
+            4th item = 3 - 2 = 1        lowest price of prev item = 2
+            Total Price = 10 = 4 + 5 + 0 + 1
+            
+            Prices = 1,2,3,4 
+            1st item = no discount = 1
+            2nd item = 2 - 1 = 1         lowest price of prev item = 1
+            3rd item = 3 - 1 = 2    lowest price of prev item = 1
+            4th item = 4 - 1 = 3         lowest price of prev item = 1
+            Total Price = 7 = 1 + 1 + 2 + 3
+            */
         }
 
         /*
