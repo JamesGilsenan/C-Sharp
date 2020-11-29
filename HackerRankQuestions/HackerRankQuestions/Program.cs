@@ -457,6 +457,19 @@ namespace HackerRankQuestions
             * To do this, you are allowed to delete zero or more characters in the string. Your task is to find the minimum number of required deletions.
             For example, given the string AABAAB, remove an A at positions 0 and 3 to make s = ABAB in 2 deletions. */
 
+            /*var str = "My name @is ,Wan.;'; Wan";
+            var charsToRemove = new string[] { "@", ",", ".", ";", "'" };
+            foreach (var c in charsToRemove)
+            {
+                str = str.Replace(c, string.Empty);
+            } /*
+
+            /*var str = "My name @is ,Wan.;'; Wan";
+            str = new string((from c in str
+                  where char.IsWhiteSpace(c) || char.IsLetterOrDigit(c)
+                  select c
+            ).ToArray()); */
+
             int deletions = 0;
             var set = new HashSet<char>(s);
             //if there is only 1 char in hashset, number of deletions will equal the length of string s minus 1
@@ -473,14 +486,14 @@ namespace HackerRankQuestions
                 if (s[i + deletions] == s[i + deletions + 1])
                 {
                     deletions++;
-                    Console.WriteLine("Deleting... " + deletions);
+                    //Console.WriteLine("Deleting... " + deletions);
                     i--;
                 }
             }
             return deletions;
         }
 
-        
+
 
     }
 }
