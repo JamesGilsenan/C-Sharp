@@ -11,8 +11,8 @@ namespace _30DaysOfCoding
         static void Main(string[] args)
         {
             //DayZero();
-            DayOne(12, 4.0, "is the best place to learn and practice coding");
-
+            //DayOne(12, 4.0, "is the best place to learn and practice coding");
+            DayTwo(12, 20, 8);
             Console.Read();
         }
 
@@ -49,6 +49,14 @@ namespace _30DaysOfCoding
             Console.WriteLine("String Concaternation = " + s + myString);
         }
 
-       
+       static void DayTwo(double meal_cost, int tip_percent, int tax_percent)
+        {
+            /*Given the meal price(base cost of a meal), tip percent(the percentage of the meal price being added as tip), 
+             * and tax percent(the percentage of the meal price being added as tax) for a meal, find and print the meal's total cost.
+             * Print the total meal cost, where totalCost is the rounded integer result of the entire bill (mealCost with added tax and tip). */
+
+            double totalCost = meal_cost + ((meal_cost / 100) * tip_percent) + ((meal_cost/100) * tax_percent);
+            Console.WriteLine(Math.Round(totalCost));
+        }
     }
 }
