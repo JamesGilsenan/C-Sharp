@@ -12,7 +12,10 @@ namespace _30DaysOfCoding
         {
             //DayZero();
             //DayOne(12, 4.0, "is the best place to learn and practice coding");
-            DayTwo(12, 20, 8);
+            //DayTwo(12, 20, 8);
+            //DayThree();
+            Person jack = new Person(7);
+            DayFour(jack);
             Console.Read();
         }
 
@@ -80,5 +83,15 @@ namespace _30DaysOfCoding
 
 
         }
+
+        static void DayFour(Person person)
+        {
+            Console.WriteLine(person.age);
+            person.YearPasses();
+            Console.WriteLine(person.age);
+            person.AmIOld();
+        }
+
+
     }
 }
