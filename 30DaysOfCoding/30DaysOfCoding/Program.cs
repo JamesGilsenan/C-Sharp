@@ -14,8 +14,9 @@ namespace _30DaysOfCoding
             //DayOne(12, 4.0, "is the best place to learn and practice coding");
             //DayTwo(12, 20, 8);
             //DayThree();
-            Person jack = new Person(7);
-            DayFour(jack);
+            //Person jack = new Person(7);
+            //DayFour(jack);
+            DayFive();
             Console.Read();
         }
 
@@ -90,6 +91,17 @@ namespace _30DaysOfCoding
             person.YearPasses();
             Console.WriteLine(person.age);
             person.AmIOld();
+        }
+
+        static void DayFive()
+        {
+            /*Given an integer, n, print its first 10 multiples. Each multiple n x i (where 1 <= i <= 10) should be printed on a new line in the form: n x i = result. */
+            int n = Convert.ToInt32(Console.ReadLine());
+
+            for(int i=1; i <= 10; i++)
+            {
+                Console.WriteLine(n + " x " + i + " = " + (n * i));
+            }
         }
 
 
