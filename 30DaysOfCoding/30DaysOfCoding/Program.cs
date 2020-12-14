@@ -12,7 +12,12 @@ namespace _30DaysOfCoding
         {
             //DayZero();
             //DayOne(12, 4.0, "is the best place to learn and practice coding");
-            DayTwo(12, 20, 8);
+            //DayTwo(12, 20, 8);
+            //DayThree();
+            //Person jack = new Person(7);
+            //DayFour(jack);
+            //DayFive();
+            DaySix();
             Console.Read();
         }
 
@@ -80,5 +85,48 @@ namespace _30DaysOfCoding
 
 
         }
+
+        static void DayFour(Person person)
+        {
+            Console.WriteLine(person.age);
+            person.YearPasses();
+            Console.WriteLine(person.age);
+            person.AmIOld();
+        }
+
+        static void DayFive()
+        {
+            /*Given an integer, n, print its first 10 multiples. Each multiple n x i (where 1 <= i <= 10) should be printed on a new line in the form: n x i = result. */
+            int n = Convert.ToInt32(Console.ReadLine());
+
+            for(int i=1; i <= 10; i++)
+            {
+                Console.WriteLine(n + " x " + i + " = " + (n * i));
+            }
+        }
+
+        static void DaySix()
+        {
+            //Given a string, s, of length n that is indexed from 0 to n - 1, print its even-indexed and odd-indexed characters as 2 space-separated strings on a single line
+            int numWords = Convert.ToInt32(Console.ReadLine());
+
+            for (int j = 0; j < numWords; j++)
+            {
+                string S = Console.ReadLine();
+                string odd = "";
+                string even = "";
+
+                for (int i = 0; i < S.Length; i++)
+                {
+                    if (i % 2 == 0)
+                        even += S[i];
+                    else
+                        odd += S[i];
+                }
+                Console.WriteLine(even + " " + odd);
+            }
+        }
+
+
     }
 }
