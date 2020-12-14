@@ -16,7 +16,8 @@ namespace _30DaysOfCoding
             //DayThree();
             //Person jack = new Person(7);
             //DayFour(jack);
-            DayFive();
+            //DayFive();
+            DaySix();
             Console.Read();
         }
 
@@ -101,6 +102,28 @@ namespace _30DaysOfCoding
             for(int i=1; i <= 10; i++)
             {
                 Console.WriteLine(n + " x " + i + " = " + (n * i));
+            }
+        }
+
+        static void DaySix()
+        {
+            //Given a string, s, of length n that is indexed from 0 to n - 1, print its even-indexed and odd-indexed characters as 2 space-separated strings on a single line
+            int numWords = Convert.ToInt32(Console.ReadLine());
+
+            for (int j = 0; j < numWords; j++)
+            {
+                string S = Console.ReadLine();
+                string odd = "";
+                string even = "";
+
+                for (int i = 0; i < S.Length; i++)
+                {
+                    if (i % 2 == 0)
+                        even += S[i];
+                    else
+                        odd += S[i];
+                }
+                Console.WriteLine(even + " " + odd);
             }
         }
 
